@@ -1,0 +1,54 @@
+
+const int trigPin = 7;
+const int echoPin = 11;
+int speakerPin = 2;
+ 
+int numTones = 1;
+int tones[] = {261};
+ 
+ 
+ long duration;
+ int distance;
+ 
+ void setup() 
+ 
+
+ {
+ pinMode(trigPin, OUTPUT); 
+ pinMode(echoPin, INPUT); 
+ }
+ 
+ void loop() {
+
+ digitalWrite(trigPin, LOW);
+ delayMicroseconds(2);
+ 
+
+ digitalWrite(trigPin, HIGH);
+ delayMicroseconds(10);
+ digitalWrite(trigPin, LOW);
+ 
+
+ duration = pulseIn(echoPin, HIGH);
+ 
+
+ distance= duration*0.034/2;
+ 
+
+ Serial.print("Distance: ");
+ Serial.println(distance);
+ if (distance < 4)
+ {
+ {
+  for (int i = 0; i < numTones; i++)
+  {
+    tone(speakerPin, tones[i]);
+    delay(500);
+  }
+  noTone(speakerPin);
+}
+ }
+ else{}
+ }
+ 
+
